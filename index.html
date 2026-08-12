@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8b5e6b">
+  <meta name="description" content="Elegant and affordable artificial jewellery from P&P Collections.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="P&P Collections | Artificial Jewellery">
+  <meta property="og:description" content="Elegant and affordable artificial jewellery from P&P Collections.">
+  <meta property="og:image" content="assets/favicon.svg">
+  <meta property="og:url" content="">
+  <title>P&P Collections | Artificial Jewellery</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#collections">Skip to collection</a>
+
+  <header class="site-header" id="home">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="P&P Collections home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 80 52" role="img">
+            <text x="40" y="36" text-anchor="middle">P&amp;P</text>
+          </svg>
+        </span>
+        <span class="brand-name">P&amp;P Collections</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">P&amp;P Collections</p>
+          <h1 id="hero-title">Elegant Jewellery for Every Occasion</h1>
+          <p id="hero-subtitle">Discover timeless artificial jewellery designed to add a little sparkle to every look.</p>
+          <a class="btn hero-cta" href="#collections">Explore Collection</a>
+        </div>
+        <div class="hero-emblem" aria-hidden="true">
+          <span>P&amp;P</span>
+          <small>COLLECTIONS</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalogue section" id="collections" aria-labelledby="collection-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Our Collection</p>
+          <h2 id="collection-title">Find Your Favourite</h2>
+          <p>Browse our latest pieces and enquire directly on WhatsApp.</p>
+        </div>
+
+        <div id="category-filters" class="category-filters" aria-label="Product categories"></div>
+
+        <div id="catalogue-status" class="catalogue-status" role="status" aria-live="polite">
+          <div class="loader" aria-hidden="true"></div>
+          <span>Loading our collection…</span>
+        </div>
+
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="about section is-hidden" id="about" aria-labelledby="about-title">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Our Story</p>
+          <h2 id="about-title">About P&amp;P Collections</h2>
+        </div>
+        <div id="about-content" class="rich-text"></div>
+      </div>
+    </section>
+
+    <section class="contact section is-hidden" id="contact" aria-labelledby="contact-title">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="eyebrow">Let's Connect</p>
+          <h2 id="contact-title">Contact Us</h2>
+          <p>Have a question about a piece? We would love to hear from you.</p>
+        </div>
+        <div id="contact-list" class="contact-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer is-hidden" id="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong id="footer-brand">P&amp;P Collections</strong>
+        <p id="footer-text"></p>
+      </div>
+      <a id="footer-instagram" class="footer-social is-hidden" href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
