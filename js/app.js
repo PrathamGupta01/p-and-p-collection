@@ -118,16 +118,38 @@ async function init() {
 function setupNavigation() {
   elements.menuToggle.addEventListener("click", () => {
     const open = elements.nav.classList.toggle("is-open");
-    elements.menuToggle.setAttribute("aria-expanded", String(open));
-    elements.menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+
+    elements.menuToggle.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+    elements.menuToggle.setAttribute(
+      "aria-label",
+      open ? "Close menu" : "Open menu"
+    );
   });
 
-  elements.nav.addEventListener("click", event => {
-    if (event.target.matches("a")) {
+  document.querySelectorAll('.site-nav a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const targetId = link.getAttribute("href");
+      const target = document.querySelector(targetId);
+
+      if (!target || target.classList.contains("is-hidden")) {
+        return;
+      }
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
       elements.nav.classList.remove("is-open");
       elements.menuToggle.setAttribute("aria-expanded", "false");
       elements.menuToggle.setAttribute("aria-label", "Open menu");
-    }
+    });
   });
 }
 
@@ -382,10 +404,10 @@ function applyContent(content) {
   document.querySelectorAll(".brand-name").forEach(el => el.textContent = websiteName);
   elements.footerBrand.textContent = websiteName;
 
-  if (content.AboutUs) {
-    elements.about.classList.remove("is-hidden");
-    elements.aboutContent.textContent = content.AboutUs;
-  }
+  if (content.AboutUs && content.AboutUs.trim()) {
+  elements.about.classList.remove("is-hidden");
+  elements.aboutContent.textContent = content.AboutUs.trim();
+}
 
   const contactItems = [
     {
@@ -421,9 +443,9 @@ function applyContent(content) {
   ];
 
   const visibleContacts = contactItems.filter(item => item.display && item.href);
-  if (visibleContacts.length) {
-    elements.contact.classList.remove("is-hidden");
-    elements.contactList.replaceChildren();
+  if (visibleContacts.length > 0) {
+  elements.contact.classList.remove("is-hidden");
+  elements.contactList.replaceChildren();
 
     visibleContacts.forEach(item => {
       const link = document.createElement("a");
