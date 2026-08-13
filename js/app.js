@@ -5,7 +5,22 @@ import { openWhatsApp } from "./whatsapp.js";
    CONFIGURATION — ONLY CHANGE THESE VALUES IF NEEDED
    ========================================================= */
 
-const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1ROWM_An57U-fyiFB1eMf6l65uKvMrwNplHTiMcLXhx8/edit";
+// =====================================================
+// GOOGLE SHEET CONFIGURATION
+// Each URL points to a separate public Google Sheet.
+// =====================================================
+
+const PRODUCTS_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1ROWM_An57U-fyiFB1eMf6l65uKvMrwNplHTiMcLXhx8/edit?usp=sharing";
+
+const SETTINGS_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1S3tYPMJRN9sRgSdRyQ01nN10C_8XzGLjKUchCFa6jD8/edit?usp=sharing";
+
+const CONTENT_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/1M9y-j2a59js41oyp9MKIYwaZnKb_B03BUHmYVgQR6IY/edit?usp=sharing";
+
+// Optional fallback WhatsApp number.
+// Content Sheet WhatsAppNumber will be preferred.
 const WHATSAPP_FALLBACK_NUMBER = "1234567890";
 /* ========================================================= */
 
