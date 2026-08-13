@@ -5,7 +5,7 @@ import { openWhatsApp } from "./whatsapp.js";
    CONFIGURATION — ONLY CHANGE THESE VALUES IF NEEDED
    ========================================================= */
 const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQV6fMOMA6SJjVhA02PCKEp7of8Z8KB3wOFMYwVe2VksyJFMdq-cx1p18LtdSGmFWryYrbN0ga12Qtn/pubhtml";
-const WHATSAPP_FALLBACK_NUMBER = "";
+const WHATSAPP_FALLBACK_NUMBER = "1234567890";
 /* ========================================================= */
 
 const DEFAULT_SETTINGS = {
