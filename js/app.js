@@ -93,8 +93,17 @@ async function init() {
   setInitialPageMetadata();
   setLoadingState();
 
-  if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes("PASTE_YOUR")) {
-    showCatalogueError("Please add your Google Sheet URL in js/app.js before publishing the website.");
+  if (
+     !PRODUCTS_SHEET_URL ||
+     !SETTINGS_SHEET_URL ||
+     !CONTENT_SHEET_URL ||
+     PRODUCTS_SHEET_URL.includes("PASTE_") ||
+     SETTINGS_SHEET_URL.includes("PASTE_") ||
+     CONTENT_SHEET_URL.includes("PASTE_")
+   ) {
+     showCatalogueError(
+       "Please configure all three Google Sheet URLs in js/app.js."
+     );
     return;
   }
 
@@ -102,7 +111,12 @@ async function init() {
   const timeout = window.setTimeout(() => controller.abort(), 15000);
 
   try {
-    const data = await fetchAllSheets(GOOGLE_SHEET_URL, controller.signal);
+    const data = await fetchAllSheets(
+     PRODUCTS_SHEET_URL,
+     SETTINGS_SHEET_URL,
+     CONTENT_SHEET_URL,
+     controller.signal
+   );
     state.settings = { ...DEFAULT_SETTINGS, ...data.settings };
     state.content = data.content;
     state.whatsappNumber = data.content.WhatsAppNumber || WHATSAPP_FALLBACK_NUMBER;
