@@ -5,23 +5,8 @@ import { openWhatsApp } from "./whatsapp.js";
    CONFIGURATION — ONLY CHANGE THESE VALUES IF NEEDED
    ========================================================= */
 
-// =====================================================
-// GOOGLE SHEET CONFIGURATION
-// Each URL points to a separate public Google Sheet.
-// =====================================================
-
-const PRODUCTS_SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1ROWM_An57U-fyiFB1eMf6l65uKvMrwNplHTiMcLXhx8/edit?usp=sharing";
-
-const SETTINGS_SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1S3tYPMJRN9sRgSdRyQ01nN10C_8XzGLjKUchCFa6jD8/edit?usp=sharing";
-
-const CONTENT_SHEET_URL =
-  "https://docs.google.com/spreadsheets/d/1M9y-j2a59js41oyp9MKIYwaZnKb_B03BUHmYVgQR6IY/edit?usp=sharing";
-
-// Optional fallback WhatsApp number.
-// Content Sheet WhatsAppNumber will be preferred.
-const WHATSAPP_FALLBACK_NUMBER = "1234567890";
+const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1ROWM_An57U-fyiFB1eMf6l65uKvMrwNplHTiMcLXhx8/edit";
+const WHATSAPP_FALLBACK_NUMBER = "8937833422";
 /* ========================================================= */
 
 const DEFAULT_SETTINGS = {
@@ -93,17 +78,8 @@ async function init() {
   setInitialPageMetadata();
   setLoadingState();
 
-  if (
-     !PRODUCTS_SHEET_URL ||
-     !SETTINGS_SHEET_URL ||
-     !CONTENT_SHEET_URL ||
-     PRODUCTS_SHEET_URL.includes("PASTE_") ||
-     SETTINGS_SHEET_URL.includes("PASTE_") ||
-     CONTENT_SHEET_URL.includes("PASTE_")
-   ) {
-     showCatalogueError(
-       "Please configure all three Google Sheet URLs in js/app.js."
-     );
+  if (!GOOGLE_SHEET_URL || GOOGLE_SHEET_URL.includes("PASTE_YOUR")) {
+    showCatalogueError("Please add your Google Sheet URL in js/app.js before publishing the website.");
     return;
   }
 
@@ -111,12 +87,7 @@ async function init() {
   const timeout = window.setTimeout(() => controller.abort(), 15000);
 
   try {
-    const data = await fetchAllSheets(
-     PRODUCTS_SHEET_URL,
-     SETTINGS_SHEET_URL,
-     CONTENT_SHEET_URL,
-     controller.signal
-   );
+    const data = await fetchAllSheets(GOOGLE_SHEET_URL, controller.signal);
     state.settings = { ...DEFAULT_SETTINGS, ...data.settings };
     state.content = data.content;
     state.whatsappNumber = data.content.WhatsAppNumber || WHATSAPP_FALLBACK_NUMBER;
